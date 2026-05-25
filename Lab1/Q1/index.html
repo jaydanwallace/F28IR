@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Open Library Search</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js"></script>
+</head>
+<body>
+
+  <h1>Open Library Book Search</h1>
+
+  <div class="form-row">
+    <input type="text" id="query" placeholder="Enter book title or author..." />
+    <select id="searchType">
+      <option value="q">All</option>
+      <option value="title">Title</option>
+      <option value="author">Author</option>
+    </select>
+    <button onclick="searchBooks()">Search</button>
+  </div>
+
+  <p id="status"></p>
+  <p id="error"></p>
+  <div id="results"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
