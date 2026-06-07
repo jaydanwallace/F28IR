@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Online Payment Processing</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <h1>Online Payment Processing</h1>
+
+    <section class="card">
+      <h2>Order Details</h2>
+      <label>
+        Customer name
+        <input id="customerName" type="text" placeholder="Alice">
+      </label>
+      <label>
+        Email address
+        <input id="customerEmail" type="email" placeholder="alice@example.com">
+      </label>
+      <label>
+        Product
+        <input id="productName" type="text" placeholder="Widget">
+      </label>
+      <label>
+        Quantity
+        <input id="productQuantity" type="number" min="1" value="1">
+      </label>
+      <label>
+        Shipping address
+        <input id="shippingAddress" type="text" placeholder="123 Main St, City, Country">
+      </label>
+      <label>
+        Card number
+        <input id="cardNumber" type="text" placeholder="4242424242424242">
+      </label>
+      <label>
+        Card expiry
+        <input id="cardExpiry" type="text" placeholder="12/25">
+      </label>
+      <label>
+        Card CVV
+        <input id="cardCvv" type="text" placeholder="123">
+      </label>
+
+      <div class="button-row">
+        <button id="startButton" onclick="startPayment()">Start Payment Flow</button>
+        <button id="resetButton" onclick="resetForm()" type="button">Reset</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Processing Log</h2>
+      <div id="statusLine" class="status">Waiting to start...</div>
+      <div id="stepLog" class="log"></div>
+      <div id="result" class="result"></div>
+    </section>
+
+    <section class="card note">
+      <h2>Run Instructions</h2>
+      <p>Run a local HTTP server in this folder first:</p>
+      <pre>python3 -m http.server 8000</pre>
+      <p>Run the backend API in another terminal:</p>
+      <pre>python3 payment_api.py</pre>
+      <p>Open <strong>http://localhost:8000</strong> in your browser.</p>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
