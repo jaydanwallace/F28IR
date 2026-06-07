@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz Game</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Quiz Game</h1>
+
+  <div id="join">
+    <input id="name" placeholder="Name">
+    <button onclick="join()">Join</button>
+    <button onclick="resetGame()">Reset</button>
+  </div>
+
+  <div id="game" style="display:none;">
+    <div id="scores"></div>
+    <div id="question"></div>
+    <input id="answer" placeholder="Answer">
+    <button onclick="send()">Submit</button>
+    <div id="msg"></div>
+    <div id="log"></div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

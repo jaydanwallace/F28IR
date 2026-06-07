@@ -1,0 +1,47 @@
+[
+  {
+    "qid": 1,
+    "question": "What is 3 * 7",
+    "answer": 21
+  },
+  {
+    "qid": 2,
+    "question": "What would you call a male ladybug?",
+    "answer": "ladybug"
+  },
+  {
+    "qid": 3,
+    "question": "If 1=3, 3=5, and 5=4, then, 6=?",
+    "answer": 3
+  },
+  {
+    "qid": 4,
+    "question": "Is it OK to say 'after dark' when it's actually after light?",
+    "answer": "Yes"
+  },
+  {
+    "qid": 5,
+    "question": "40 children signed up for a karaoke. There are 8 more girls than boys. How many girls have signed up to sing?",
+    "answer": 24
+  },
+  {
+    "qid": 6,
+    "question": "Which country did potatoes and tomatoes come from?",
+    "answer": "Peru"
+  },
+  {
+    "qid": 7,
+    "question": "A basket contains 3 apples. How do you divide the apples among 3 children so that each child has 1 apple while 1 apple remains in the basket?",
+    "answer": "give one child the basket"
+  },
+  {
+    "qid": 8,
+    "question": "What is the worst type of food you could eat?",
+    "answer": "UPF"
+  },
+  {
+    "qid": 9,
+    "question": "Another funny way of saying 'I am cruising for a snoozing 😴' is:",
+    "answer": "I'm off to Bedfordshire"
+  }
+]

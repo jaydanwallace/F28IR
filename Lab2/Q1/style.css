@@ -1,0 +1,74 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #e5e7ec;
+  color: #111;
+  margin: 0;
+  padding: 24px 16px;
+  text-align: center;
+}
+
+h1 {
+  margin: 0 0 18px;
+  font-size: 1.8rem;
+  letter-spacing: 0.03em;
+}
+
+#join, #game {
+  max-width: 440px;
+  margin: 0 auto;
+  padding: 18px;
+  background: #fff;
+  border: 1px solid #d1d7de;
+  border-radius: 12px;
+}
+
+input, button {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px 12px;
+  border: 1px solid #b0b7bf;
+  border-radius: 8px;
+  font-size: 0.98rem;
+}
+
+input {
+  background: #fafbfc;
+}
+
+button {
+  background: #f0f2f5;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #e1e4e9;
+}
+
+#scores {
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #333;
+}
+
+#question {
+  margin: 14px 0 8px;
+  font-size: 1rem;
+  color: #222;
+}
+
+#msg {
+  min-height: 20px;
+  margin-top: 10px;
+}
+
+#log {
+  margin-top: 14px;
+  font-size: 0.93rem;
+  text-align: left;
+  color: #3c4043;
+}
+
+#log div {
+  margin-bottom: 8px;
+}
