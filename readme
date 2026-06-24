@@ -1,0 +1,4 @@
+to run
+
+1. Run server - "npm install && npm start" from server folder
+2. Run client - "npm install && npm run dev" from client folder
