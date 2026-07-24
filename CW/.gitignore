@@ -1,0 +1,23 @@
+# dependencies
+node_modules/
+
+# env files (secrets — never commit these)
+.env
+server/.env
+client/.env
+
+# build output
+client/dist/
+server/dist/
+
+# database file
+server/db.sqlite
+
+# logs
+*.log
+npm-debug.log*
+
+# OS/editor junk
+.DS_Store
+.vscode/
+.idea/
