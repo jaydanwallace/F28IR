@@ -14,11 +14,11 @@ app.use(express.json());
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: '*' } });
 
-// --- FR1-5: search artist top tracks in a country ---
+// Requirements 1 to 5
 app.get('/api/search', async (req, res) => {
   try {
     const artist = (req.query.artist || '').trim();
-    const country = (req.query.country || '').trim().toUpperCase();
+    const country = (req.query.country || '').trim().toUpperCase() || 'US';
 
     if (!artist) return res.status(400).json({ error: 'artist is required' });
 
@@ -33,14 +33,32 @@ app.get('/api/search', async (req, res) => {
     const found = searchRes.data.artists.items[0];
     if (!found) return res.status(404).json({ error: 'artist not found' });
 
-    // get their top tracks in that market
-    const topRes = await axios.get(
-      `https://api.spotify.com/v1/artists/${found.id}/top-tracks`,
-      { headers, params: { market: country } }
-    );
-    const tracks = topRes.data.tracks.slice(0, 10);
+    let tracks = [];
 
-    // FR6: store the search (count only, per coursework Q&A)
+    try {
+      // get their top tracks in that market
+      const topRes = await axios.get(`https://api.spotify.com/v1/artists/${found.id}/top-tracks`, {
+        headers,
+        params: { market: country },
+      });
+      tracks = (topRes.data.tracks || []).slice(0, 10);
+    } catch (topErr) {
+      if (topErr.response?.status === 403) {
+        const fallbackRes = await axios.get('https://api.spotify.com/v1/search', {
+          headers,
+          params: { q: artist, type: 'track', market: country, limit: 10 },
+        });
+        tracks = (fallbackRes.data.tracks?.items || []).slice(0, 10);
+      } else {
+        throw topErr;
+      }
+    }
+
+    if (!tracks.length) {
+      return res.status(404).json({ error: 'no tracks found' });
+    }
+
+    // Requirement 6
     await Search.create({ artist: found.name, country, trackCount: tracks.length });
 
     res.json({
@@ -49,7 +67,7 @@ app.get('/api/search', async (req, res) => {
       tracks: tracks.map((t) => ({
         name: t.name,
         preview_url: t.preview_url,
-        external_url: t.external_urls.spotify,
+        external_url: t.external_urls?.spotify,
       })),
     });
   } catch (err) {
@@ -58,7 +76,7 @@ app.get('/api/search', async (req, res) => {
   }
 });
 
-// --- FR7: web service for the last 20 searches ---
+// Requirement 7
 app.get('/api/searches/latest', async (req, res) => {
   const searches = await Search.findAll({ order: [['createdAt', 'DESC']], limit: 20 });
   res.json(
@@ -66,7 +84,7 @@ app.get('/api/searches/latest', async (req, res) => {
   );
 });
 
-// --- FR8-9: chat, topic = a random past search ---
+// Requirement 8 and 9
 io.on('connection', async (socket) => {
   const recent = await Search.findOne({ order: sequelize.random() });
   socket.emit('chat-topic', recent ? recent.artist : 'Music');
@@ -77,5 +95,6 @@ io.on('connection', async (socket) => {
 });
 
 sequelize.sync().then(() => {
-  server.listen(process.env.PORT, () => console.log('Server running'));
+  const port = process.env.PORT || 3001;
+  server.listen(port, () => console.log(`Server running on port ${port}`));
 });
